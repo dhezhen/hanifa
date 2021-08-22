@@ -1503,6 +1503,23 @@ class Admin extends CI_Controller
         echo $this->user_model->assign_permission();
     }
 
+    //AKTIVASI USER
+    public function user_activation()
+    {
+        if ($this->session->userdata('admin_login') != true) {
+            redirect(site_url('login'), 'refresh');
+        }
+
+        // CHECK ACCESS PERMISSION
+        check_permission('admin');
+
+        echo $this->user_model->user_activation();
+    }
+
+
+
+
+
     // REMOVING INSTRUCTOR FROM COURSE
     public function remove_an_instructor($course_id, $instructor_id)
     {

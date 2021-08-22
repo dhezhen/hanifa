@@ -46,7 +46,7 @@ $modules = [
                                     <td>
                                         <!-- Bool Switch-->
                                         <input type="checkbox" class="" id="<?php echo $permission_assign_to['id'] . '-' . $module; ?>" data-switch="bool" onchange="setPermission('<?php echo $permission_assign_to['id'] . '-' . $module; ?>')" <?php echo $module_permission ? "checked" : ""; ?> />
-                                        <label for="<?php echo $permission_assign_to['id']  . '-' . $module; ?>" data-on-label="On" data-off-label="Off"></label>
+                                        <label for="<?php echo $permission_assign_to['id']  . '-' . $module; ?>" data-on-label="Aktif" data-off-label="Tidak aktif"></label>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -25,6 +25,8 @@
                                 <th><?php echo get_phrase('email'); ?></th>
                                 <th><?php echo get_phrase('enrolled_courses'); ?></th>
                                 <th><?php echo get_phrase('actions'); ?></th>
+                                <th><?php echo get_phrase('Level'); ?></th>
+                                <th><?php echo get_phrase('status'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,6 +66,30 @@
                                             </ul>
                                         </div>
                                     </td>
+                                    <td>
+                                        <select class="custom-select" oninput="setLevel()">
+                                            <option selected>Select Level</option>
+                                            <option value="1">Level 1</option>
+                                            <option value="2">Level 2</option>
+                                            <option value="3">Level 3</option>
+                                        </select>
+
+                                    </td>
+
+                                    <td>
+                                        <?php if ($user['status'] == 1) : ?>
+                                            <!-- Default switch -->
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="<?= $user['id']; ?>" checked onchange="setActivation()">
+                                                <label class="custom-control-label" for="<?= $user['id']; ?>"><span class="badge badge-pill badge-success">Aktif</span></label>
+                                            </div>
+                                        <?php else : ?>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="<?= $user['id']; ?>" onchange="setActivation()">
+                                                <label class="custom-control-label" for="<?= $user['id']; ?>"><span class="badge badge-pill badge-danger">Non Aktif</span></label>
+                                            </div>
+                                    </td>
+                                <?php endif; ?>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -73,3 +99,35 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+
+<script>
+    "use strict";
+
+    function setActivation(arg) {
+        // CALL THE SERVER SIDE
+        $.ajax({
+            url: '<?php echo site_url('admin/user_activation'); ?>',
+            type: 'POST',
+            data: {
+                arg: arg
+            },
+            success: function(response) {
+                $.NotificationApp.send("<?php echo get_phrase('heads_up'); ?>!", '<?php echo get_phrase('santri telah aktif'); ?>', "top-right", "rgba(0,0,0,0.2)", "info");
+            }
+        });
+    }
+
+    function setLevel(arg) {
+        // CALL THE SERVER SIDE
+        $.ajax({
+            url: '<?php echo site_url('admin/user_level'); ?>',
+            type: 'POST',
+            data: {
+                arg: arg
+            },
+            success: function(response) {
+                $.NotificationApp.send("<?php echo get_phrase('heads_up'); ?>!", '<?php echo get_phrase('Level Update'); ?>', "top-right", "rgba(0,0,0,0.2)", "info");
+            }
+        });
+    }
+</script>

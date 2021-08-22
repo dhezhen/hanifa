@@ -1,9 +1,10 @@
 <?php
-    $status_wise_courses = $this->crud_model->get_status_wise_courses();
-    $number_of_courses = $status_wise_courses['pending']->num_rows() + $status_wise_courses['active']->num_rows();
-    $number_of_lessons = $this->crud_model->get_lessons()->num_rows();
-    $number_of_enrolment = $this->crud_model->enrol_history()->num_rows();
-    $number_of_students = $this->user_model->get_user()->num_rows();
+$status_wise_courses = $this->crud_model->get_status_wise_courses();
+$number_of_courses = $status_wise_courses['pending']->num_rows() + $status_wise_courses['active']->num_rows();
+$number_of_lessons = $this->crud_model->get_lessons()->num_rows();
+$number_of_enrolment = $this->crud_model->enrol_history()->num_rows();
+$number_of_students = $this->user_model->get_user()->num_rows();
+$number_of_students_unverified = $this->user_model->get_user_unverified()->num_rows();
 ?>
 <div class="row">
     <div class="col-xl-12">
@@ -20,8 +21,7 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title mb-4"><?php echo get_phrase('admin_revenue_this_year'); ?></h4>
-
+                <h4 class="header-title mb-4"><?php echo get_phrase('Grafik Peserta Pelatihan'); ?></h4>
                 <div class="mt-3 chartjs-chart" style="height: 320px;">
                     <canvas id="task-area-chart"></canvas>
                 </div>
@@ -78,6 +78,7 @@
                                     <i class="dripicons-user-group text-muted" style="font-size: 24px;"></i>
                                     <h3><span><?php echo $number_of_students; ?></span></h3>
                                     <p class="text-muted font-15 mb-0"><?php echo get_phrase('number_of_student'); ?></p>
+                                    <a href="<?= base_url('admin/users') ?>" class="badge badge-danger"><?= $number_of_students_unverified; ?> Santri belum Diverifikasi</a>
                                 </div>
                             </div>
                         </a>
@@ -116,30 +117,30 @@
         </div>
     </div>
     <div class="col-xl-8">
-        <div class="card" id = 'unpaid-instructor-revenue'>
+        <div class="card" id='unpaid-instructor-revenue'>
             <div class="card-body">
                 <h4 class="header-title mb-3"><?php echo get_phrase('requested_withdrawal'); ?>
-                    <a href="<?php echo site_url('admin/instructor_payout'); ?>" class="alignToTitle" id ="go-to-instructor-revenue"> <i class="mdi mdi-logout"></i> </a>
+                    <a href="<?php echo site_url('admin/instructor_payout'); ?>" class="alignToTitle" id="go-to-instructor-revenue"> <i class="mdi mdi-logout"></i> </a>
                 </h4>
                 <div class="table-responsive">
                     <table class="table table-centered table-hover mb-0">
                         <tbody>
 
                             <?php
-                                $pending_payouts = $this->crud_model->get_pending_payouts()->result_array();
-                                foreach ($pending_payouts as $key => $pending_payout):
+                            $pending_payouts = $this->crud_model->get_pending_payouts()->result_array();
+                            foreach ($pending_payouts as $key => $pending_payout) :
                                 $instructor_details = $this->user_model->get_all_user($pending_payout['user_id'])->row_array();
                             ?>
-                            <tr>
-                                <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['first_name'].' '.$instructor_details['last_name']; ?></a></h5>
-                                    <small><?php echo get_phrase('email'); ?>: <span class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
-                                </td>
-                                <td>
-                                    <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo currency($pending_payout['amount']); ?></a></h5>
-                                    <small><span class="text-muted font-13"><?php echo get_phrase('requested_withdrawal_amount'); ?></span></small>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo $instructor_details['first_name'] . ' ' . $instructor_details['last_name']; ?></a></h5>
+                                        <small><?php echo get_phrase('email'); ?>: <span class="text-muted font-13"><?php echo $instructor_details['email']; ?></span></small>
+                                    </td>
+                                    <td>
+                                        <h5 class="font-14 my-1"><a href="javascript:void(0);" class="text-body" style="cursor: auto;"><?php echo currency($pending_payout['amount']); ?></a></h5>
+                                        <small><span class="text-muted font-13"><?php echo get_phrase('requested_withdrawal_amount'); ?></span></small>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
 
                         </tbody>

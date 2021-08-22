@@ -26,6 +26,17 @@ class User_model extends CI_Model
         return $this->db->get('users');
     }
 
+    public function get_user_unverified()
+    {
+
+        $this->db->where('role_id', 2);
+        $this->db->where('status', 0);
+        return $this->db->get('users');
+    }
+
+
+
+
     public function get_all_user($user_id = 0)
     {
         if ($user_id > 0) {
@@ -541,6 +552,20 @@ class User_model extends CI_Model
         $this->db->update('permissions', $permission_data);
         return true;
     }
+
+
+    //USER ACTIVATION 
+
+    public function user_activation()
+    {
+    }
+
+
+
+
+
+
+
 
     // GET ADMIN'S PERMISSION JSON
     public function get_admins_permission_json($admin_id)
