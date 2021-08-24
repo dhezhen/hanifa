@@ -480,6 +480,13 @@ class User extends CI_Controller
         }
     }
 
+    //Manage Homework
+
+
+
+
+
+
     function manage_profile()
     {
         redirect(site_url('home/profile/user_profile'), 'refresh');

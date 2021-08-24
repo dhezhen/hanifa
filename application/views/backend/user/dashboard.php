@@ -37,19 +37,35 @@ $requested_withdrawal_amount = $this->crud_model->get_requested_withdrawal_amoun
                             <tr>
                                 <th>#</th>
                                 <th>Nama Santri</th>
-                                <th>Level</th>
                                 <th>Kelas</th>
+                                <th>Progress</th>
                                 <th>Tugas</th>
-                                <th>Status</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <td>1</td>
                             <td>Dede Husen</td>
-                            <td>Pemula</td>
                             <td>Tahsin 1</td>
-                            <td> <a href="#" class="d-block text-center py-3 bg-hover-light" onclick="showAjaxModal('<?= site_url($logged_in_user_role . '/course_form/add_course_shortcut'); ?>', '<?= get_phrase('Update Tugas Santri'); ?>')"> <i style="color:green" class="fas fa-eye"></i></a></td>
-                            <td>Status</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>75%
+                                </div>
+                            </td>
+                            <td><span class="badge badge-pill badge-success">Telah Diverifikasi</span> <i style="color:green" class="fas fa-eye"></i></a></td>
+                        </tbody>
+
+                        <tbody>
+                            <td>2</td>
+                            <td>Drajat Triana</td>
+                            <td>Tahsin 2</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>25%
+                                </div>
+                            </td>
+
+                            <td><span class="badge badge-pill badge-danger">Belum Diverifikasi</span> <i style="color:green" class="fas fa-eye"></i></a></td>
                         </tbody>
                     </table>
                 </div>

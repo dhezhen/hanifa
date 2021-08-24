@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col">
                 <div class="home-banner-wrap">
-                    <h2><?php echo get_frontend_settings('banner_title'); ?></h2>
-                    <p><?php echo get_frontend_settings('banner_sub_title'); ?></p>
+                    <h2><?= get_frontend_settings('banner_title'); ?></h2>
+                    <p><?= get_frontend_settings('banner_sub_title'); ?></p>
                     <form class="" action="<?php echo site_url('home/search'); ?>" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control" name="query" placeholder="<?php echo site_phrase('what_do_you_want_to_learn'); ?>?">
