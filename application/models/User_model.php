@@ -23,8 +23,10 @@ class User_model extends CI_Model
             $this->db->where('id', $user_id);
         }
         $this->db->where('role_id', 2);
+        $this->db->where('is_instructor', 0);
         return $this->db->get('users');
     }
+
 
     public function get_user_unverified()
     {
