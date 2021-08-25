@@ -9,20 +9,20 @@
             <li><a class="mobile-search-trigger" href="#mobile-search">Search<span></span></a></li>
           </ul>
 
-          <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#"><img src="<?php echo base_url('uploads/system/'.get_frontend_settings('dark_logo')); ?>" alt="" height="35"></a>
+          <a href="<?php echo site_url(''); ?>" class="navbar-brand" href="#"><img src="<?php echo base_url('uploads/system/' . get_frontend_settings('dark_logo')); ?>" alt="" height="35"></a>
 
           <?php include 'menu.php'; ?>
 
           <form class="inline-form" action="<?php echo site_url('home/search'); ?>" method="get" style="width: 100%;">
             <div class="input-group search-box mobile-search">
-              <input type="text" name = 'query' class="form-control" placeholder="<?php echo site_phrase('search_for_courses'); ?>">
+              <input type="text" name='query' class="form-control" placeholder="<?php echo site_phrase('search_for_courses'); ?>">
               <div class="input-group-append">
                 <button class="btn" type="submit"><i class="fas fa-search"></i></button>
               </div>
             </div>
           </form>
 
-          <?php if ($this->session->userdata('admin_login')): ?>
+          <?php if ($this->session->userdata('admin_login')) : ?>
             <div class="instructor-box menu-icon-box">
               <div class="icon">
                 <a href="<?php echo site_url('admin'); ?>" style="border: 1px solid transparent; margin: 10px 10px; font-size: 14px; width: 100%; border-radius: 0;"><?php echo site_phrase('administrator'); ?></a>
@@ -30,7 +30,7 @@
             </div>
           <?php endif; ?>
 
-          <div class="cart-box menu-icon-box" id = "cart_items">
+          <div class="cart-box menu-icon-box" id="cart_items">
             <?php include 'cart_items.php'; ?>
           </div>
 
