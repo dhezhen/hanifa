@@ -1322,5 +1322,6 @@
     "tambah_tugas": "Tambah tugas",
     "homework_title": "Homework title",
     "judul_tugas": "Judul tugas",
-    "jenis_file": "Jenis file"
+    "jenis_file": "Jenis file",
+    "password_reset_failed": "Password reset failed"
 }
